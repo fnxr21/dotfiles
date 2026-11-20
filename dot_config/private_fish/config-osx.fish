@@ -7,6 +7,3 @@ for brew in /opt/homebrew/bin/brew /usr/local/bin/brew
 end
 
 alias ls "ls -p -G"
-
-# Antigravity
-test -d $HOME/.antigravity/antigravity/bin; and fish_add_path $HOME/.antigravity/antigravity/bin

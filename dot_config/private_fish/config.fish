@@ -20,7 +20,6 @@ alias ll "ls -l"
 alias lla "ll -A"
 alias g git
 alias c claude
-alias ag="antigravity"
 alias python=python3
 alias claude-yolo "claude --dangerously-skip-permissions"
 alias pn pnpm
