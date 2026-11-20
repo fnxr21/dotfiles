@@ -99,11 +99,10 @@ The repo root is the chezmoi **source**. A name tells chezmoi where the file goe
 │   ├── tmux/               terminal multiplexer
 │   ├── herdr/              workspace manager for AI agents
 │   ├── ghostty/            terminal
-│   ├── git/                git aliases + delta pager
+│   ├── git/                git aliases, delta pager, global ignore
 │   ├── gwq/                git worktrees
 │   ├── mise/               Go / Node versions
 │   ├── htop/               process viewer
-│   ├── git-secrets/        global.gitignore
 │   └── claude-secure/      Claude Code secret protection kit
 ├── dot_gitconfig ──▶ ~/.gitconfig
 ├── dot_gitmessage ──▶ ~/.gitmessage
@@ -119,7 +118,6 @@ The repo root is the chezmoi **source**. A name tells chezmoi where the file goe
 | `dot_config/tmux` | `~/.config/tmux` | `tmux.conf` + `macos.conf` / `linux.conf` + statusline + utility |
 | `dot_config/ghostty` | `~/.config/ghostty` | theme, font, opacity |
 | `dot_config/htop` | `~/.config/htop` | htop layout |
-| `dot_config/git-secrets` | `~/.config/git-secrets` | `global.gitignore` (used by git `core.excludesFile`) |
 | `dot_config/claude-secure` | `~/.config/claude-secure` | `apply.sh` + templates (see §4) |
 | `dot_gitconfig` | `~/.gitconfig` | shared git settings. Includes `~/.gitconfig.local` |
 | `dot_claude/settings.json` | `~/.claude/settings.json` | Claude Code user settings |
@@ -309,13 +307,13 @@ Reload: `Cmd+Shift+,` (macOS) / `Ctrl+Shift+,` (Linux).
 
 ### git
 
-- `dot_gitconfig`: shared settings (pull, bitbucket SSH url, git-secrets rules, hooks template, global ignore).
+- `dot_gitconfig`: shared settings (pull, bitbucket SSH url, git-secrets rules, hooks template).
   At the end: includes `~/.config/git/aliases.gitconfig`, `~/.config/git/delta.gitconfig`, then `~/.gitconfig.local`.
 - `nvim` is the commit editor, `git difftool` / `git mergetool` open `nvim -d`. New repos start on `main`. Git LFS filter is on (brew `git-lfs`).
 - `dot_config/git/delta.gitconfig`: diffs go through **delta** (line numbers, syntax colors). `n` / `N` jump between files.
 - `dot_config/git/aliases.gitconfig`: `st`, `co`, `br`, `d`, `hist` (graph of all branches), `llog`, `ps` / `pl` (push / pull the current branch), `open` (repo in browser via `gh`), `edit-unmerged` / `add-unmerged`.
 - `~/.gitconfig.local`: **your name and email**. Not in git. Template: `gitconfig.local.example`.
-- `core.excludesFile` = `~/.config/git-secrets/global.gitignore` → ignored in **every** repo.
+- `~/.config/git/ignore` (git reads it by default, no `core.excludesFile` needed) → ignored in **every** repo.
 - `init.templateDir` = `~/.git-templates/git-secrets` → every new repo gets these hooks (any terminal, VS Code, scripts):
 
   | hook | when | does |
