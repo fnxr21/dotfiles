@@ -18,8 +18,8 @@ The setup provides:
 
 > **Important:** All examples in this guide use fake credentials. Never use real credentials for testing.
 
-> **This dotfiles setup:** `./install.sh --packages` installs git-secrets (apt / brew), and `./install.sh`
-> sets up the hooks template (section 10). The active rules are already in `home/.gitconfig`
+> **This dotfiles setup:** `chezmoi apply` installs git-secrets (apt / brew) and
+> sets up the hooks template (section 10). The active rules are already in `dot_gitconfig`
 > (`secrets.patterns`). Use this guide to understand the setup, or to set it up by hand.
 
 ---
@@ -398,7 +398,7 @@ You should see:
 ✓ Installed prepare-commit-msg hook
 ```
 
-In this dotfiles setup, `install.sh` then replaces `pre-commit` and `commit-msg` with the claude-secure
+In this dotfiles setup, `chezmoi apply` then replaces `pre-commit` and `commit-msg` with the claude-secure
 versions (they still run git-secrets, plus file-name checks, gitleaks and the commit format check) and adds
 `pre-push` (no direct push to main) and `post-checkout` (protects `git clone`).
 

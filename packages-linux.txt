@@ -1,10 +1,9 @@
 # Linux (Ubuntu/Debian) apt packages. One per line; "#" = comment.
-# Install with:  ./install.sh --packages
+# chezmoi installs them on "chezmoi apply" whenever this file changes.
 # NOT in apt (install by hand, see README): neovim >= 0.10, ghostty,
-#   asdf, lazygit, PlemolJP font, VS Code Insiders
-# gitleaks: install.sh downloads the release binary to ~/.local/bin
+#   mise, git-delta, lazygit, PlemolJP font, VS Code Insiders
+# gitleaks: the chezmoi package script downloads the release binary to ~/.local/bin
 git
-stow
 fish
 tmux
 fzf

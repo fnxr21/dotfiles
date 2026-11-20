@@ -25,10 +25,36 @@
 	patterns = https://
 [init]
 	templateDir = ~/.git-templates/git-secrets
+	defaultBranch = main
 [commit]
 	template = ~/.gitmessage
 [core]
 	excludesFile = ~/.config/git-secrets/global.gitignore
+	editor = nvim
+	# notice renames that only change letter case (macOS disk is case-insensitive)
+	ignorecase = false
+
+# git difftool / git mergetool open nvim
+[diff]
+	tool = nvimdiff
+[difftool "nvimdiff"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+[merge]
+	tool = nvimdiff
+[mergetool "nvimdiff"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+# Git LFS (brew "git-lfs")
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
+
+[include]
+	path = ~/.config/git/aliases.gitconfig
+	path = ~/.config/git/delta.gitconfig
 
 # Personal values (name, email, signing key) live in ~/.gitconfig.local (not in git)
 [include]

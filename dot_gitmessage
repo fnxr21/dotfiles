@@ -9,4 +9,4 @@
 # Breaking: feat(scope)!: ...  plus a "BREAKING CHANGE: ..." line
 # Short and clear. No emoji or icons.
 #
-# Guide: ~/dotfiles/GIT-FLOW.md
+# Guide: ~/.dotfiles/GIT-FLOW.md

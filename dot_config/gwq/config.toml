@@ -1,0 +1,7 @@
+# gwq add -b feature/x  -> ~/fn/worktrees/github.com/<owner>/<repo>@feature/x
+[worktree]
+basedir = "~/fn/worktrees"
+auto_mkdir = true
+
+[naming]
+template = "{{.Host}}/{{.Owner}}/{{.Repository}}@{{.Branch}}"

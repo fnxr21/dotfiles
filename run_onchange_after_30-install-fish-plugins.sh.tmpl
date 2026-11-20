@@ -1,0 +1,12 @@
+#!/bin/bash
+# Re-runs when fish_plugins changes. fish_plugins hash: {{ include "dot_config/private_fish/fish_plugins" | sha256sum }}
+set -euo pipefail
+
+# chezmoi may run before Homebrew's bin directory is on PATH (fresh machine)
+PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+if ! command -v fish >/dev/null; then
+  echo "fish not installed; skipping plugins" >&2
+  exit 0
+fi
+# Uses the pinned vendor/fisher.fish (no curl | sh). Plugins are downloaded from GitHub.
+fish -c "source '{{ joinPath .chezmoi.sourceDir "vendor/fisher.fish" }}'; fisher update"
