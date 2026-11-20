@@ -20,7 +20,8 @@ The setup provides:
 
 > **This dotfiles setup:** `chezmoi apply` installs git-secrets (apt / brew) and
 > sets up the hooks template (section 10). The active rules are already in `dot_gitconfig`
-> (`secrets.patterns`). Use this guide to understand the setup, or to set it up by hand.
+> (`secrets.patterns`), and the global ignore file is `~/.config/git/ignore`.
+> Use this guide to understand the setup, or to set it up by hand.
 
 ---
 

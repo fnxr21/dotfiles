@@ -19,7 +19,7 @@ Managed with [chezmoi](https://www.chezmoi.io/): one command clones, links, inst
 8. [Test the install safely](#8-test-the-install-safely)
 9. [Troubleshooting](#9-troubleshooting)
 
-Git branches and commit messages: see [GIT-FLOW.md](GIT-FLOW.md).
+Git branches and commit messages: see [docs/git-flow.md](docs/git-flow.md).
 
 ---
 
@@ -92,8 +92,8 @@ The repo root is the chezmoi **source**. A name tells chezmoi where the file goe
 ├── .gitignore              blocks secrets and machine state
 ├── .gitleaks.toml          secret scanner config
 ├── vendor/fisher.fish      pinned fisher (plugin manager)
+├── docs/                   my notes (git flow, git-secrets, tmux, AI tools)
 ├── dot_config/  ──▶ ~/.config/
-│   ├── _doc/               my notes (tmux, AI tools)
 │   ├── fish/               shell
 │   ├── nvim/               editor (LazyVim)
 │   ├── tmux/               terminal multiplexer
@@ -266,7 +266,7 @@ Prefix is **`Ctrl+t`** (not `Ctrl+b`).
 | `Ctrl+Shift+←/→` | move window left / right |
 
 Copy mode uses vi keys. Files: `tmux.conf` (main), `statusline.conf` (colors/status bar),
-`utility.conf` (lazygit), `macos.conf` / `linux.conf` (per OS). More notes: `dot_config/_doc/tmux/tmux.md`.
+`utility.conf` (lazygit), `macos.conf` / `linux.conf` (per OS). More notes: `docs/tmux.md`.
 
 ### herdr
 
@@ -321,11 +321,11 @@ Reload: `Cmd+Shift+,` (macOS) / `Ctrl+Shift+,` (Linux).
   | `pre-commit` | every commit | blocks secret file names, runs git-secrets, runs gitleaks (if installed). If the repo has no `.claude/` protection yet, adds it |
   | `commit-msg` | every commit | Conventional Commits format, subject <= 72 chars, no emoji; then git-secrets on the message |
   | `prepare-commit-msg` | every commit | git-secrets on the message |
-  | `pre-push` | every push | blocks pushes to `main`/`master` (use a PR). See [GIT-FLOW.md](GIT-FLOW.md) |
+  | `pre-push` | every push | blocks pushes to `main`/`master` (use a PR). See [docs/git-flow.md](docs/git-flow.md) |
   | `post-checkout` | right after `git clone` | runs `claude-secure --local` (skips tool folders like `~/.local`, `~/.cache`, Homebrew). Skip once: `CLAUDE_SECURE_SKIP=1 git clone ...` |
 
   Old repos (made before this): run `claude-secure` (own repo) or `claude-secure --local` (someone else's) inside them.
-- Guide: `dot_config/git-secrets/readme_first_step.md`
+- Guide: `docs/git-secrets.md`
 
 ### VS Code Insiders
 
@@ -339,8 +339,8 @@ api_key = YOUR_WAKATIME_API_KEY
 
 ### Claude Code
 
-`dot_claude/settings.json` = user settings. Install Claude Code: see `dot_config/_doc/ai/claude-code.md`.
-9router (optional): `dot_config/_doc/ai/9router.md`.
+`dot_claude/settings.json` = user settings. Install Claude Code: see `docs/claude-code.md`.
+9router (optional): `docs/9router.md`.
 
 ---
 
@@ -389,7 +389,7 @@ chezmoi update -v       # git pull + apply (runs package scripts if the lists ch
   gitleaks dir . --redact -v      # current files
   git secrets --scan
   ```
-  `.gitleaks.toml` only allows the **fake** example keys in `dot_config/git-secrets/readme_first_step.md`.
+  `.gitleaks.toml` only allows the **fake** example keys in `docs/git-secrets.md`.
 - **If a secret was committed:** deleting it is **not enough** (it stays in git history).
   1. **Rotate** the key at the provider (make a new one, turn off the old one).
   2. Then clean history (e.g. `git filter-repo`) and force-push. Only after step 1.
