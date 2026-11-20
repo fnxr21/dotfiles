@@ -115,7 +115,7 @@ The repo root is the chezmoi **source**. A name tells chezmoi where the file goe
 
 | source | target | what it is |
 |---|---|---|
-| `dot_config/private_fish` | `~/.config/fish` | `config.fish` (all OS), `config-osx.fish`, `config-linux.fish`, `fish_plugins`, my functions |
+| `dot_config/private_fish` | `~/.config/fish` | `config.fish` (all OS), `config-osx.fish`, `config-linux.fish`, `fish_plugins`, my functions. Plugin files are **not** in git: fisher installs them from `fish_plugins` |
 | `dot_config/nvim` | `~/.config/nvim` | LazyVim. `lazy-lock.json` pins plugin versions |
 | `dot_config/tmux` | `~/.config/tmux` | `tmux.conf` + `macos.conf` / `linux.conf` + statusline + utility |
 | `dot_config/ghostty` | `~/.config/ghostty` | theme, font, opacity |
