@@ -199,7 +199,6 @@ chezmoi never overwrites it. Change the saved answers: `chezmoi init --source ~/
 |---|---|
 | `g` | `git` |
 | `c` | `claude` |
-| `ag` | `antigravity` |
 | `vim` | `nvim` (if installed) |
 | `python` | `python3` |
 | `claude-yolo` | `claude --dangerously-skip-permissions` |
