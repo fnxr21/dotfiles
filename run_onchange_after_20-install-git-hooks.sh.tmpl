@@ -1,0 +1,20 @@
+#!/bin/bash
+# Re-runs when a hook changes. Hooks hash:
+# {{ include "dot_config/claude-secure/templates/executable_pre-commit" | sha256sum }}
+# {{ include "dot_config/claude-secure/templates/commit-msg" | sha256sum }}
+# {{ include "dot_config/claude-secure/templates/pre-push" | sha256sum }}
+# {{ include "dot_config/claude-secure/templates/post-checkout" | sha256sum }}
+set -euo pipefail
+
+# claude-secure hooks for every new repo (init or clone, any terminal):
+# pre-commit/commit-msg also run git-secrets; commit-msg checks Conventional
+# Commits; pre-push blocks direct pushes to main; post-checkout protects clones.
+if ! command -v git-secrets >/dev/null; then
+  echo "git-secrets not installed: new repos will not get the secret hooks" >&2
+  exit 0
+fi
+tpl="$HOME/.git-templates/git-secrets"
+[ -d "$tpl/hooks" ] || git secrets --install "$tpl"
+for h in pre-commit commit-msg pre-push post-checkout; do
+  install -m 755 "$HOME/.config/claude-secure/templates/$h" "$tpl/hooks/$h"
+done

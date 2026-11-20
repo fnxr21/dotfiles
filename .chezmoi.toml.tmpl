@@ -1,0 +1,15 @@
+{{- /* Asked once on "chezmoi init"; answers are kept in ~/.config/chezmoi/chezmoi.toml */ -}}
+{{- $name := promptStringOnce . "name" "Git user name" -}}
+{{- $email := promptStringOnce . "email" "Git email" -}}
+# Repo can live anywhere (~/.dotfiles here); remember it for later chezmoi commands
+sourceDir = {{ .chezmoi.sourceDir | quote }}
+# Link files into the repo like stow did: edits (and LazyVim / Claude Code writes)
+# land in the repo directly. Templates, scripts and executables are still copies.
+mode = "symlink"
+
+[data]
+name = {{ $name | quote }}
+email = {{ $email | quote }}
+
+[diff]
+pager = "delta"

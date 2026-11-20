@@ -1,0 +1,12 @@
+
+# <type>(<scope>): <summary>     (lowercase, imperative, no period, <= 72 chars)
+#
+# - change one        (only when there are many changes, one bullet each)
+# - change two
+#
+# Types: feat fix docs style refactor perf test build ci chore revert
+# Scope: fish tmux nvim git install vscode claude docs ...
+# Breaking: feat(scope)!: ...  plus a "BREAKING CHANGE: ..." line
+# Short and clear. No emoji or icons.
+#
+# Guide: ~/.dotfiles/GIT-FLOW.md

@@ -1,0 +1,14 @@
+# Repo files that are not dotfiles
+README.md
+GIT-FLOW.md
+Brewfile
+packages-linux.txt
+vendor
+
+# VS Code Insiders settings live in a different place per OS
+{{ if ne .chezmoi.os "darwin" }}
+Library
+{{ end }}
+{{ if ne .chezmoi.os "linux" }}
+.config/Code - Insiders
+{{ end }}

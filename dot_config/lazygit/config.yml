@@ -1,0 +1,17 @@
+# ~/.config/lazygit/config.yml (fish sets XDG_CONFIG_HOME so lazygit reads it on macOS)
+customCommands:
+  # C in the files panel: Claude Code stages, writes the Conventional Commit message and commits
+  - key: "C"
+    command: "fish -c claude_commit"
+    description: "commit with Claude Code"
+    context: "files"
+    loadingText: "committing with Claude Code"
+    output: terminal
+gui:
+  mouseEvents: false
+  scrollHeight: 30
+git:
+  autoFetch: false
+  # diffs in delta, same look as "git diff" (config/git/delta.gitconfig)
+  diffRenderers:
+    - command: delta --dark --paging=never

@@ -1,0 +1,8 @@
+# Global tool versions. A project's mise.toml or .tool-versions wins over these.
+[tools]
+go = "1.26.1"
+node = "24"
+
+[settings]
+# Also read .nvmrc / .node-version in projects
+idiomatic_version_file_enable_tools = ["node"]

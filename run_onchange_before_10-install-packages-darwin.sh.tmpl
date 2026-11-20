@@ -1,0 +1,14 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# Re-runs when the Brewfile changes. Brewfile hash: {{ include "Brewfile" | sha256sum }}
+set -euo pipefail
+
+for b in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+  [ -x "$b" ] && eval "$("$b" shellenv)" && break
+done
+command -v brew >/dev/null || { echo "Homebrew not found. Install it first (see README)." >&2; exit 1; }
+
+# A failed package (e.g. an app already installed without brew) must not stop the dotfiles apply
+brew bundle --file {{ joinPath .chezmoi.sourceDir "Brewfile" | quote }} ||
+  echo "brew bundle: some packages failed (see above). Fix them, then: brew bundle --file ~/.dotfiles/Brewfile" >&2
+{{ end -}}
