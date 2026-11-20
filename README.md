@@ -103,8 +103,7 @@ The repo root is the chezmoi **source**. A name tells chezmoi where the file goe
 │   ├── gwq/                git worktrees
 │   ├── mise/               Go / Node versions
 │   ├── htop/               process viewer
-│   ├── enchant/            my spell-check word list
-│   ├── git-secrets/        global.gitignore + secret patterns
+│   ├── git-secrets/        global.gitignore
 │   └── claude-secure/      Claude Code secret protection kit
 ├── dot_gitconfig ──▶ ~/.gitconfig
 ├── dot_gitmessage ──▶ ~/.gitmessage
@@ -120,8 +119,7 @@ The repo root is the chezmoi **source**. A name tells chezmoi where the file goe
 | `dot_config/tmux` | `~/.config/tmux` | `tmux.conf` + `macos.conf` / `linux.conf` + statusline + utility |
 | `dot_config/ghostty` | `~/.config/ghostty` | theme, font, opacity |
 | `dot_config/htop` | `~/.config/htop` | htop layout |
-| `dot_config/enchant` | `~/.config/enchant` | personal dictionary (Linux apps) |
-| `dot_config/git-secrets` | `~/.config/git-secrets` | `global.gitignore` (used by git `core.excludesFile`) and `patterns` |
+| `dot_config/git-secrets` | `~/.config/git-secrets` | `global.gitignore` (used by git `core.excludesFile`) |
 | `dot_config/claude-secure` | `~/.config/claude-secure` | `apply.sh` + templates (see §4) |
 | `dot_gitconfig` | `~/.gitconfig` | shared git settings. Includes `~/.gitconfig.local` |
 | `dot_claude/settings.json` | `~/.claude/settings.json` | Claude Code user settings |
