@@ -18,6 +18,15 @@ alias g git
 alias c claude
 alias ag="antigravity"
 alias python=python3
+
+# browser: Helium if installed, else Chrome
+function b
+    if test -d /Applications/Helium.app
+        open -a Helium $argv
+    else
+        open -a "Google Chrome" $argv
+    end
+end
 #nvim
 command -qv nvim && alias vim nvim
 set -gx EDITOR nvim
