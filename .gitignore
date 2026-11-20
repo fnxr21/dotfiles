@@ -50,3 +50,8 @@ lazy-lock.json.bak
 *.swp
 *.swo
 .DS_Store
+
+# ---- Installed plugins / backups ----
+tmux/plugins/
+config/tmux/plugins/
+**/automatic_backups/
