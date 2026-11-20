@@ -1,6 +1,6 @@
 # Repo files that are not dotfiles
 README.md
-GIT-FLOW.md
+docs
 Brewfile
 packages-linux.txt
 vendor

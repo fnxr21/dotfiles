@@ -19,7 +19,7 @@ Managed with [chezmoi](https://www.chezmoi.io/): one command clones, links, inst
 8. [Test the install safely](#8-test-the-install-safely)
 9. [Troubleshooting](#9-troubleshooting)
 
-Git branches and commit messages: see [GIT-FLOW.md](GIT-FLOW.md).
+Git branches and commit messages: see [docs/git-flow.md](docs/git-flow.md).
 
 ---
 
@@ -92,19 +92,17 @@ The repo root is the chezmoi **source**. A name tells chezmoi where the file goe
 ├── .gitignore              blocks secrets and machine state
 ├── .gitleaks.toml          secret scanner config
 ├── vendor/fisher.fish      pinned fisher (plugin manager)
+├── docs/                   my notes (git flow, git-secrets, tmux, AI tools)
 ├── dot_config/  ──▶ ~/.config/
-│   ├── _doc/               my notes (tmux, AI tools)
 │   ├── fish/               shell
 │   ├── nvim/               editor (LazyVim)
 │   ├── tmux/               terminal multiplexer
 │   ├── herdr/              workspace manager for AI agents
 │   ├── ghostty/            terminal
-│   ├── git/                git aliases + delta pager
+│   ├── git/                git aliases, delta pager, global ignore
 │   ├── gwq/                git worktrees
 │   ├── mise/               Go / Node versions
 │   ├── htop/               process viewer
-│   ├── enchant/            my spell-check word list
-│   ├── git-secrets/        global.gitignore + secret patterns
 │   └── claude-secure/      Claude Code secret protection kit
 ├── dot_gitconfig ──▶ ~/.gitconfig
 ├── dot_gitmessage ──▶ ~/.gitmessage
@@ -120,8 +118,6 @@ The repo root is the chezmoi **source**. A name tells chezmoi where the file goe
 | `dot_config/tmux` | `~/.config/tmux` | `tmux.conf` + `macos.conf` / `linux.conf` + statusline + utility |
 | `dot_config/ghostty` | `~/.config/ghostty` | theme, font, opacity |
 | `dot_config/htop` | `~/.config/htop` | htop layout |
-| `dot_config/enchant` | `~/.config/enchant` | personal dictionary (Linux apps) |
-| `dot_config/git-secrets` | `~/.config/git-secrets` | `global.gitignore` (used by git `core.excludesFile`) and `patterns` |
 | `dot_config/claude-secure` | `~/.config/claude-secure` | `apply.sh` + templates (see §4) |
 | `dot_gitconfig` | `~/.gitconfig` | shared git settings. Includes `~/.gitconfig.local` |
 | `dot_claude/settings.json` | `~/.claude/settings.json` | Claude Code user settings |
@@ -270,7 +266,7 @@ Prefix is **`Ctrl+t`** (not `Ctrl+b`).
 | `Ctrl+Shift+←/→` | move window left / right |
 
 Copy mode uses vi keys. Files: `tmux.conf` (main), `statusline.conf` (colors/status bar),
-`utility.conf` (lazygit), `macos.conf` / `linux.conf` (per OS). More notes: `dot_config/_doc/tmux/tmux.md`.
+`utility.conf` (lazygit), `macos.conf` / `linux.conf` (per OS). More notes: `docs/tmux.md`.
 
 ### herdr
 
@@ -311,13 +307,13 @@ Reload: `Cmd+Shift+,` (macOS) / `Ctrl+Shift+,` (Linux).
 
 ### git
 
-- `dot_gitconfig`: shared settings (pull, bitbucket SSH url, git-secrets rules, hooks template, global ignore).
+- `dot_gitconfig`: shared settings (pull, bitbucket SSH url, git-secrets rules, hooks template).
   At the end: includes `~/.config/git/aliases.gitconfig`, `~/.config/git/delta.gitconfig`, then `~/.gitconfig.local`.
 - `nvim` is the commit editor, `git difftool` / `git mergetool` open `nvim -d`. New repos start on `main`. Git LFS filter is on (brew `git-lfs`).
 - `dot_config/git/delta.gitconfig`: diffs go through **delta** (line numbers, syntax colors). `n` / `N` jump between files.
 - `dot_config/git/aliases.gitconfig`: `st`, `co`, `br`, `d`, `hist` (graph of all branches), `llog`, `ps` / `pl` (push / pull the current branch), `open` (repo in browser via `gh`), `edit-unmerged` / `add-unmerged`.
 - `~/.gitconfig.local`: **your name and email**. Not in git. Template: `gitconfig.local.example`.
-- `core.excludesFile` = `~/.config/git-secrets/global.gitignore` → ignored in **every** repo.
+- `~/.config/git/ignore` (git reads it by default, no `core.excludesFile` needed) → ignored in **every** repo.
 - `init.templateDir` = `~/.git-templates/git-secrets` → every new repo gets these hooks (any terminal, VS Code, scripts):
 
   | hook | when | does |
@@ -325,11 +321,11 @@ Reload: `Cmd+Shift+,` (macOS) / `Ctrl+Shift+,` (Linux).
   | `pre-commit` | every commit | blocks secret file names, runs git-secrets, runs gitleaks (if installed). If the repo has no `.claude/` protection yet, adds it |
   | `commit-msg` | every commit | Conventional Commits format, subject <= 72 chars, no emoji; then git-secrets on the message |
   | `prepare-commit-msg` | every commit | git-secrets on the message |
-  | `pre-push` | every push | blocks pushes to `main`/`master` (use a PR). See [GIT-FLOW.md](GIT-FLOW.md) |
+  | `pre-push` | every push | blocks pushes to `main`/`master` (use a PR). See [docs/git-flow.md](docs/git-flow.md) |
   | `post-checkout` | right after `git clone` | runs `claude-secure --local` (skips tool folders like `~/.local`, `~/.cache`, Homebrew). Skip once: `CLAUDE_SECURE_SKIP=1 git clone ...` |
 
   Old repos (made before this): run `claude-secure` (own repo) or `claude-secure --local` (someone else's) inside them.
-- Guide: `dot_config/git-secrets/readme_first_step.md`
+- Guide: `docs/git-secrets.md`
 
 ### VS Code Insiders
 
@@ -343,8 +339,8 @@ api_key = YOUR_WAKATIME_API_KEY
 
 ### Claude Code
 
-`dot_claude/settings.json` = user settings. Install Claude Code: see `dot_config/_doc/ai/claude-code.md`.
-9router (optional): `dot_config/_doc/ai/9router.md`.
+`dot_claude/settings.json` = user settings. Install Claude Code: see `docs/claude-code.md`.
+9router (optional): `docs/9router.md`.
 
 ---
 
@@ -393,7 +389,7 @@ chezmoi update -v       # git pull + apply (runs package scripts if the lists ch
   gitleaks dir . --redact -v      # current files
   git secrets --scan
   ```
-  `.gitleaks.toml` only allows the **fake** example keys in `dot_config/git-secrets/readme_first_step.md`.
+  `.gitleaks.toml` only allows the **fake** example keys in `docs/git-secrets.md`.
 - **If a secret was committed:** deleting it is **not enough** (it stays in git history).
   1. **Rotate** the key at the provider (make a new one, turn off the old one).
   2. Then clean history (e.g. `git filter-repo`) and force-push. Only after step 1.

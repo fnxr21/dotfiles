@@ -26,7 +26,7 @@ if [ -n "$blocked" ]; then
   echo "BLOCKED by claude-secure: these staged files look like secrets:" >&2
   echo "$blocked" | sed 's/^/  - /' >&2
   echo "Unstage them with: git rm --cached <file>" >&2
-  echo "False positive? Add a regex line to .claude/secure-allow (see GIT-FLOW.md)." >&2
+  echo "False positive? Add a regex line to .claude/secure-allow (see docs/git-flow.md in the dotfiles repo)." >&2
   exit 1
 fi
 

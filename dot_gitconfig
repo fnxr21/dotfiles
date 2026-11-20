@@ -29,7 +29,6 @@
 [commit]
 	template = ~/.gitmessage
 [core]
-	excludesFile = ~/.config/git-secrets/global.gitignore
 	editor = nvim
 	# notice renames that only change letter case (macOS disk is case-insensitive)
 	ignorecase = false
