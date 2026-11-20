@@ -17,6 +17,7 @@ brew "ripgrep"      # nvim / LazyVim search
 brew "lazygit"      # tmux prefix+g, nvim
 brew "jq"           # fish "make" function
 brew "htop"
+brew "eza"          # fish ls/la/ll aliases
 brew "asdf"         # go_19 / go_21 / ... functions, .tool-versions
 
 # security
